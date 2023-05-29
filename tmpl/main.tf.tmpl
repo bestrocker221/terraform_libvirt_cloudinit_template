@@ -1,0 +1,34 @@
+terraform {
+  required_providers {
+    libvirt = {
+      source = "dmacvicar/libvirt"
+    }
+  }
+}
+
+provider "libvirt" {
+  uri = "qemu:///session?socket=/run/user/1000/libvirt/virtqemud-sock"
+}
+
+# BASE CLOUDINIT POOL
+resource "libvirt_pool" "debian_cloudinit_POOLID" {
+  name = "ubuntu_cloudinit_POOLID"
+  type = "dir"
+  path = pathexpand("~/KVM/debian_cloudinit_pool_POOLID")
+}
+
+# PROJECTS POOL
+resource "libvirt_pool" "projects_POOLID" {
+  name = "all_projects_pool_POOLID"
+  type = "dir"
+  path = pathexpand("~/KVM/projects_pool_POOLID")
+}
+
+resource "libvirt_volume" "downloaded_volume" {
+  name = "${var.base_name}_downloaded.qcow2"
+  pool   = libvirt_pool.projects_POOLID.name
+  source = "https://cloud.debian.org/images/cloud/bullseye/latest/debian-11-generic-amd64.qcow2"
+  format = "qcow2"
+}
+
+

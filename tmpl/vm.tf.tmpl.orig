@@ -1,0 +1,66 @@
+# VM TEMPLATE
+
+data "template_file" "VMNAMECHANGEME_user_data" {
+  template = templatefile("./cloud_init.cfg", {
+    ssh_pubkey   = file(pathexpand("~/.ssh/default-kvm.pub")), # it takes the local file --> TODO change to USER var
+    new_hostname = "VMNAMECHANGEME.${var.project_name}.${var.network_projects}",
+    new_fqdn     = "VMNAMECHANGEME.${var.project_name}.${var.network_projects}",
+  })
+}
+
+resource "libvirt_cloudinit_disk" "commoninit_VMNAMECHANGEME" {
+  name      = "VMNAMECHANGEME.commoninit.iso"
+  user_data = data.template_file.VMNAMECHANGEME_user_data.rendered
+  # add network config if you want
+  #network_config = data.template_file.network_config.rendered
+  pool = libvirt_pool.debian_cloudinit_POOLID.name
+}
+
+resource "libvirt_volume" "VMNAMECHANGEME_volume" {
+  name           = "${var.project_name}_VMNAMECHANGEME_base.qcow2"
+  base_volume_id = libvirt_volume.downloaded_volume.id
+  size           = vmsize * 1073741824
+  pool           = libvirt_pool.projects_POOLID.name
+}
+
+
+resource "libvirt_domain" "VMNAMECHANGEME_vm" {
+  name       = "VMNAMECHANGEME.${var.project_name}.${var.network_untrusted}"
+  memory     = vmram * 1024
+  vcpu       = vmcpu
+  qemu_agent = true
+  machine    = "q35"
+  cloudinit  = libvirt_cloudinit_disk.commoninit_VMNAMECHANGEME.id
+
+  network_interface {
+    hostname = "VMNAMECHANGEME.${var.project_name}.${var.network_projects}"
+    bridge   = var.bridge1
+    #wait_for_lease = true
+    #wait_for_lease = true
+  }
+  graphics {
+    type        = "spice"
+    listen_type = "address"
+    autoport    = true
+  }
+
+  #add the spicevmc channel into the XML (for copy-paste)
+  xml {
+    xslt = file("all.xsl")
+  }
+  video {
+    type = "qxl"
+  }
+  disk {
+    volume_id = libvirt_volume.VMNAMECHANGEME_volume.id
+  }
+  cpu {
+    mode = "host-passthrough"
+  }
+
+  #filesystem {
+  #  source   = "/etc"
+  #  target   = "/host"
+  #  readonly = false
+  #}
+}

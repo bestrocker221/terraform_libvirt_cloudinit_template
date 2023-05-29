@@ -1,0 +1,39 @@
+# Variables template - vmname.projectname.tld
+
+variable "network_projects" {
+  description = "Network TLD"
+  type        = string
+  default     = "vms"
+}
+
+variable "network_untrusted" {
+  description = "Network TLD"
+  type        = string
+  default     = "untrusted"
+}
+
+variable "bridge1" {
+  description = "Bridge hardcoded"
+  type        = string
+  default     = "virbr1"
+}
+
+
+variable "network_dev" {
+  description = "Network TLD"
+  type        = string
+  default     = "dev"
+}
+
+variable "project_name" {
+  default = "PROJNAME"
+}
+
+
+variable "base_name" {
+  default = "debian_cloud_base"
+}
+
+variable "volume_size" {
+  default = "60" #GB
+}
