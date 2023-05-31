@@ -2,7 +2,7 @@
 
 data "template_file" "VMNAMECHANGEME_user_data" {
   template = templatefile("./cloud_init.cfg", {
-    ssh_pubkey   = file(pathexpand("~/.ssh/default-kvm.pub")), # it takes the local file --> TODO change to USER var
+    ssh_pubkey   = file(pathexpand("${var.ssh_key_path}")), # it takes the local file --> TODO change to USER var
     new_hostname = "VMNAMECHANGEME.${var.project_name}.${var.network_projects}",
     new_fqdn     = "VMNAMECHANGEME.${var.project_name}.${var.network_projects}",
   })
