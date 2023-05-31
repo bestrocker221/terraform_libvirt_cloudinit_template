@@ -25,7 +25,7 @@ resource "libvirt_volume" "VMNAMECHANGEME_volume" {
 
 
 resource "libvirt_domain" "VMNAMECHANGEME_vm" {
-  name       = "VMNAMECHANGEME.${var.project_name}.${var.network_untrusted}"
+  name       = "VMNAMECHANGEME.${var.project_name}.${var.network_projects}"
   memory     = vmram * 1024
   vcpu       = vmcpu
   qemu_agent = true
