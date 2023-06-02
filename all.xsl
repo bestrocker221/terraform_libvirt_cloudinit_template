@@ -7,7 +7,7 @@
          <xsl:apply-templates select="node()|@*"/>
       </xsl:copy>
    </xsl:template>
-
+  <!-- Add spice channel to the domain -->
   <xsl:template match="/domain/devices">
     <xsl:copy>
         <xsl:apply-templates select="node()|@*"/>
@@ -37,7 +37,7 @@
        <xsl:apply-templates select="node()|@*"/>
      </xsl:copy>
   </xsl:template>
-
+  <!-- Add the cd rom to the domain -->
   <xsl:template match="/domain/devices/disk[@device='cdrom']/target/@bus">
     <xsl:attribute name="bus">
       <xsl:value-of select="'sata'"/>
