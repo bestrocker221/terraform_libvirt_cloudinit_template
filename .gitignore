@@ -1,3 +1,5 @@
 *.tf
 .terraform/*
 terraform.*
+.terraform*                                                                                                                              
+tmpl/vm.tf.tmpl
