@@ -4,8 +4,20 @@ Version 0.4
 
 `Usage: ./helper.sh [create|addvm|deploy|destroy|clean]`
 
-1. create: initialize project with a random name
-2. addvm: creates new vm file, will ask for cpu, mem, disk etc
+## quick start
+```sh
+./helper.sh create
+./helper.sh addvm
+..
+..
+./helper.sh deploy
+./helper.sh destroy (or "clean" if you want to return to clean folder)
+```
+
+## what does it do?
+
+1. create: initialize project, it will ask for a name
+2. addvm: creates new vm file, it will ask for cpu, mem, disk etc
 3. deploy: will deploy the terraform files
 4. destroy: will tier down created infra
 5. clean: will tier down terraform infra and delete files. Goes back to original state
@@ -13,7 +25,12 @@ Version 0.4
 # Good to know
 Since we want to run in the "user-mode" we do not have access to some network settings, so the default network used here is a bridge interface `virbr1`.
 
-From a root session, a NAT network is created which will be named virbr1. This way, we can attach to it from the user-mode session without any root privileges.
+From a root session, I created a NAT network which will be named virbr1. This way, we can attach to it from the user-mode session without any root privileges.
+
+You can create as many networks as you want in the system session, then reference to them in the terraform variables, ready to be used in the project. The script does not ask for a network for now, just puts into the default virbr1 (can be changed/added in no time).
+
+## SSH
+Ex: you name a VM `chip01` ? after deployment you are ready to SSH into it with ` ssh debian@chip01`
 
 # Good points
 
@@ -31,6 +48,5 @@ From a root session, a NAT network is created which will be named virbr1. This w
 For now the VMs will be using Debian 12.
 
 The initial cloudinit config sets default passwords and your ssh key. (Default passwords are stupid, just set at your own risk or change it as you will )
-
 
 Further post-install can be done in ansible.
