@@ -28,8 +28,9 @@ From a root session, a NAT network is created which will be named virbr1. This w
 5. The first step is to download the debian cloudinit image file. Then libvirt will use this image as base image for all the other VMs created. This way the space used for 1..n VMs will be reduced.
 
 # note
-For now the VMs will be using Debian 11.
+For now the VMs will be using Debian 12.
 
 The initial cloudinit config sets default passwords and your ssh key. (Default passwords are stupid, just set at your own risk or change it as you will )
+
 
 Further post-install can be done in ansible.
