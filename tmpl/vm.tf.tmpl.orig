@@ -49,7 +49,7 @@ resource "libvirt_domain" "VMNAMECHANGEME_vm" {
     xslt = file("all.xsl")
   }
   video {
-    type = "qxl"
+    type = "virtio"
   }
   disk {
     volume_id = libvirt_volume.VMNAMECHANGEME_volume.id

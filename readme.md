@@ -50,3 +50,7 @@ For now the VMs will be using Debian 12.
 The initial cloudinit config sets default passwords and your ssh key. (Default passwords are stupid, just set at your own risk or change it as you will )
 
 Further post-install can be done in ansible.
+
+# POST DEPLOYMENT
+
+`ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i VMNAME, ansible/playbook-base.yml`
