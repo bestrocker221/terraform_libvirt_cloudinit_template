@@ -25,12 +25,14 @@ Version 0.4
 # Good to know
 Since we want to run in the "user-mode" we do not have access to some network settings, so the default network used here is a bridge interface `virbr1`.
 
-From a root session, I created a NAT network which will be named virbr1. This way, we can attach to it from the user-mode session without any root privileges.
+From a root session, I created a NAT network which will be named `virbr1`. This way, we can attach to it from the user-mode session without any root privileges.
 
-You can create as many networks as you want in the system session, then reference to them in the terraform variables, ready to be used in the project. The script does not ask for a network for now, just puts into the default virbr1 (can be changed/added in no time).
+You can create as many networks as you want in the system session, then reference to them in the Terraform variables, ready to be used in the project. The script does not ask for a network for now, just puts into the default `virbr1` (can be changed/added in no time).
 
 ## SSH
-Ex: you name a VM `chip01` ? after deployment you are ready to SSH into it with ` ssh debian@chip01`
+Ex: you name a VM `chip01` ? 
+
+After deployment you are ready to SSH into it with ` ssh debian@chip01`
 
 # Good points
 
