@@ -57,7 +57,9 @@ resource "libvirt_domain" "VMNAMECHANGEME_vm" {
   cpu {
     mode = "host-passthrough"
   }
-
+  provisioner "local-exec" {
+    command = "sleep 25 && virsh reboot ${self.network_interface[0].hostname}"
+  }
   #filesystem {
   #  source   = "/etc"
   #  target   = "/host"
