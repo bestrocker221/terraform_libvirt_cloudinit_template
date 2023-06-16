@@ -53,4 +53,4 @@ Further post-install can be done in ansible.
 
 # POST DEPLOYMENT
 
-`ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i VMNAME, ansible/playbook-base.yml`
+`ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i VMNAME, -e "privkeypath=~/.ssh/<YOURKEYHERE>" ansible/playbook-base.yml`
