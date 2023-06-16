@@ -1,0 +1,23 @@
+---
+
+- hosts: all
+  remote_user: user
+  vars:
+    ansible_ssh_private_key_file: "~/.ssh/default-kvm"
+    packages:
+      present:
+        - wireguard
+        - wireguard-tools
+        - htop
+        - git
+        - firefox-esr
+  roles:
+    - upgrade
+    - install_packages
+    - install_sublimetext
+    - install_oh-my-zsh
+    - install_spice_guest_tools
+    - install_xfce
+    - reboot
+
+
