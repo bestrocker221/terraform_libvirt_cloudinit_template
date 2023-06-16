@@ -1,6 +1,9 @@
 # Terraform vm creation
+This project will easily let you create new Libvirt virtual machines with Terraform in no time.
 
-Version 0.4
+A bash script will automate the templating for the setup and deployment of the pools, VMs, and volumes and you can then run an Ansible script to properly install tools and stuff on your vms.
+
+Version 0.5
 
 `Usage: ./helper.sh [create|addvm|deploy|destroy|clean]`
 
@@ -16,18 +19,22 @@ Version 0.4
 
 ## what does it do?
 
-1. create: initialize project, it will ask for a name
-2. addvm: creates new vm file, it will ask for cpu, mem, disk etc
-3. deploy: will deploy the terraform files
-4. destroy: will tier down created infra
-5. clean: will tier down terraform infra and delete files. Goes back to original state
+1. *create*: initialize project, it will ask for a name
+2. *addvm*: creates new vm file, it will ask for cpu, mem, disk etc
+3. *deploy*: will deploy the terraform files
+4. *destroy*: will tier down created infra
+5. *clean*: will tier down terraform infra and delete files. Goes back to original state
 
-# Good to know
+# Requirements - Good to know
+Project is still requiring some slight tweaking for a new user, as it is not made to be 100% independent yet. WIP.
+
 Since we want to run in the "user-mode" we do not have access to some network settings, so the default network used here is a bridge interface `virbr1`.
 
 From a root session, I created a NAT network which will be named `virbr1`. This way, we can attach to it from the user-mode session without any root privileges.
 
 You can create as many networks as you want in the system session, then reference to them in the Terraform variables, ready to be used in the project. The script does not ask for a network for now, just puts into the default `virbr1` (can be changed/added in no time).
+
+Create a folder `~/KVM`, where your new VM data will reside.
 
 ## SSH
 Ex: you name a VM `chip01` ? 
