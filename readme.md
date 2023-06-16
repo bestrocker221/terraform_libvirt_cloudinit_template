@@ -1,4 +1,4 @@
-# Terraform vm creation
+# Terraform - Libvirt Virtual Machine Creation
 This project will easily let you create new Libvirt virtual machines with Terraform in no time.
 
 A bash script will automate the templating for the setup and deployment of the pools, VMs, and volumes and you can then run an Ansible script to properly install tools and stuff on your vms.
