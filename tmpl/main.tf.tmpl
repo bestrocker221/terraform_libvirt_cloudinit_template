@@ -14,14 +14,14 @@ provider "libvirt" {
 resource "libvirt_pool" "debian_cloudinit_POOLID" {
   name = "ubuntu_cloudinit_POOLID"
   type = "dir"
-  path = pathexpand("~/KVM/debian_cloudinit_pool_POOLID")
+  path = pathexpand("~/KVM/all_projects_pool/debian_cloudinit_pool_POOLID")
 }
 
 # PROJECTS POOL
 resource "libvirt_pool" "projects_POOLID" {
   name = "all_projects_pool_POOLID"
   type = "dir"
-  path = pathexpand("~/KVM/projects_pool_POOLID")
+  path = pathexpand("~/KVM/all_projects_pool/projects_pool_POOLID")
 }
 
 resource "libvirt_volume" "downloaded_volume" {

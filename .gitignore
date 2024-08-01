@@ -4,4 +4,4 @@ terraform.*
 .terraform*                                                                                                                              
 tmpl/vm.tf.tmpl
 ansible/ansible-roles*
-ansible/roles
+ansible/roles*
