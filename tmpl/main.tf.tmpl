@@ -2,6 +2,7 @@ terraform {
   required_providers {
     libvirt = {
       source = "dmacvicar/libvirt"
+      version = "0.8.3"
     }
   }
 }
@@ -30,7 +31,9 @@ resource "libvirt_volume" "downloaded_volume" {
   # debian 11
   # source = "https://cloud.debian.org/images/cloud/bullseye/latest/debian-11-generic-amd64.qcow2"
   # debian 12
-  source = "https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.qcow2"
+  #source = "https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.qcow2"
+  # debian 13
+  source = "https://cloud.debian.org/images/cloud/trixie/latest/debian-13-generic-amd64.qcow2"
   format = "qcow2"
 }
 
